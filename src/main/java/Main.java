@@ -20,10 +20,11 @@ public class Main {
         for(int i = 6; i< oldArr[0].size()-6; i++){
             double total = 0;
             total += 0.5*oldArr[3].get(i-6);
-            for(int j = -5; i<6; i++){
+            for(int j = -5; j<6; j++){
                 total+= oldArr[3].get(i+j);
             }
             total += 0.5*oldArr[3].get(i+6);
+            System.out.println(total);
             newArr.add(new String[]{oldArr[0].get(i)+"", oldArr[1].get(i)+"", oldArr[2].get(i)+"", ""+(total/12.0)});
 
         }
@@ -66,10 +67,13 @@ public class Main {
             ArrayList<Double> year = new ArrayList<>();
             ArrayList<Double> month = new ArrayList<>();
             ArrayList<Double> day = new ArrayList<>();
-            scan.nextLine(); //So titles aren't taken as data
+//            scan.nextLine(); //So titles aren't taken as data
             while (scan.hasNextLine()){
                 String line = scan.nextLine();
                 String[] fields = line.split(",");
+                for (int i = 0; i < fields.length; i++) {
+                    fields[i] = fields[i].replace("\"", "").trim(); // strip quotes and whitespace
+                }
                 if(fields.length == 4) {
                     year.add(Double.parseDouble(fields[0]));
                     month.add(Double.parseDouble(fields[1]));
